@@ -1,0 +1,24 @@
+-- Base de datos videojuegos
+CREATE DATABASE videojuegos;
+
+USE videojuegos;
+
+-- Tabla para los usuarios
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL, -- Almacenamos la contraseña cifrada
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla para los videojuegos
+CREATE TABLE juegos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    genero VARCHAR(50),
+    ano_lanzamiento INT,
+    descripcion TEXT,
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
